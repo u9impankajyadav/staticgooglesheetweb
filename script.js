@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // IMPORTANT: Replace with your Google Sheet public CSV URL
     // e.g., 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR_YOUR_SHEET_ID_HERE/pub?output=csv'
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGq0M_1OoiPSLAXdNvePDWDimpn0dkHnzgpqo0JZH4sHfF-tWYe71MFHEputY6pak0HjcBAXimP3iP/pub?gid=0&single=true&output=csv';
+    const sheetUrl = 'YOUR_GOOGLE_SHEET_CSV_URL'; 
     const currentPath = window.location.pathname;
     const isHomePage = currentPath.includes('index.html') || currentPath === '/';
     const isDetailPage = currentPath.includes('detail.html');
@@ -42,17 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isHomePage) {
                 const contentDiv = document.getElementById('content');
                 if (contentDiv) {
-                    contentDiv.innerHTML = ''; // Clear "Loading content..."
+                    contentDiv.innerHTML = ''; // Clear "Loading treatments..."
                     data.forEach(item => {
                         const card = document.createElement('div');
-                        card.className = 'item-card';
+                        card.className = 'service-card'; // Changed from item-card
                         card.innerHTML = `
                             ${item.ImageURL ? `<img src="${item.ImageURL}" alt="${item.Title}">` : ''}
-                            <div>
-                                <h2>${item.Title || 'No Title'}</h2>
-                                <p>${item.Description || 'No description available.'}</p>
-                                ${item.ID ? `<a href="detail.html#${item.ID}">View Details</a>` : ''}
-                            </div>
+                            <h3>${item.Title || 'No Title'}</h3>
+                            <p>${item.Description || 'No description available.'}</p>
+                            ${item.ID ? `<a href="detail.html#${item.ID}">View Treatment</a>` : ''}
                         `;
                         contentDiv.appendChild(card);
                     });
@@ -66,22 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     const item = data.find(i => i.ID === itemId);
 
                     if (item) {
-                        detailTitle.textContent = item.Title || 'Item Details';
+                        detailTitle.textContent = item.Title || 'Treatment Details';
                         detailContentDiv.innerHTML = `
-                            ${item.ImageURL ? `<img src="${item.ImageURL}" alt="${item.Title}" style="max-width: 100%; height: auto; display: block; margin-bottom: 20px;">` : ''}
+                            ${item.ImageURL ? `<img src="${item.ImageURL}" alt="${item.Title}">` : ''}
                             <h2>${item.Title || 'No Title'}</h2>
-                            <p><strong>ID:</strong> ${item.ID}</p>
+                            <p><strong>Treatment ID:</strong> ${item.ID}</p>
                             <p>${item.Description || 'No description available.'}</p>
-                            ${item.Link ? `<p><a href="${item.Link}" target="_blank">External Link</a></p>` : ''}
+                            ${item.Link ? `<p><a href="${item.Link}" target="_blank">Learn More (External)</a></p>` : ''}
                             <!-- Add more detail fields here as needed -->
                         `;
                     } else {
-                        detailTitle.textContent = 'Item Not Found';
-                        detailContentDiv.innerHTML = '<p>The requested item could not be found.</p>';
+                        detailTitle.textContent = 'Treatment Not Found';
+                        detailContentDiv.innerHTML = '<p>The requested treatment could not be found.</p>';
                     }
                 } else {
-                     detailTitle.textContent = 'Error Loading Item';
-                     detailContentDiv.innerHTML = '<p>Could not retrieve item ID from URL.</p>';
+                     detailTitle.textContent = 'Error Loading Treatment';
+                     detailContentDiv.innerHTML = '<p>Could not retrieve treatment ID from URL.</p>';
                 }
             }
         })
@@ -89,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching or parsing Google Sheet data:', error);
             if (isHomePage) {
                 const contentDiv = document.getElementById('content');
-                if (contentDiv) contentDiv.innerHTML = '<p>Failed to load content. Please check the Google Sheet URL and your internet connection.</p>';
+                if (contentDiv) contentDiv.innerHTML = '<p>Failed to load treatments. Please check the Google Sheet URL and your internet connection.</p>';
             } else if (isDetailPage) {
                 const detailContentDiv = document.getElementById('detail-content');
-                if (detailContentDiv) detailContentDiv.innerHTML = '<p>Failed to load item details. Please check the Google Sheet URL and your internet connection.</p>';
+                if (detailContentDiv) detailContentDiv.innerHTML = '<p>Failed to load treatment details. Please check the Google Sheet URL and your internet connection.</p>';
             }
         });
 });

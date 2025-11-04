@@ -3,20 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dynamic Website</title>
+    <title>Radiant Glow - Skin & Hair Treatments</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to My Dynamic Website</h1>
+        <nav>
+            <a href="index.html" class="logo">Radiant Glow</a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Treatments</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    <main id="content">
-        <!-- Content will be loaded here from Google Sheet -->
-        <p>Loading content...</p>
-    </main>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Radiant Glow</h1>
+            <p>Expert skin and hair treatments tailored for you.</p>
+            <a href="#services" class="btn">Explore Treatments</a>
+        </div>
+    </section>
+
+    <section id="services" class="section-services">
+        <h2>Our Signature Treatments</h2>
+        <div class="service-grid" id="content">
+            <!-- Treatment cards will be loaded here from Google Sheet -->
+            <p>Loading treatments...</p>
+        </div>
+    </section>
+
+    <section id="about" class="section-about">
+        <h2>About Radiant Glow</h2>
+        <p>At Radiant Glow, we believe in enhancing your natural beauty through personalized skin and hair care solutions. Our team of experts is dedicated to providing you with the highest quality treatments in a relaxing and welcoming environment.</p>
+        <p>Using the latest techniques and premium products, we strive to deliver exceptional results that leave you feeling refreshed, rejuvenated, and confident.</p>
+    </section>
+
+    <section id="contact" class="section-contact">
+        <h2>Contact Us</h2>
+        <p>Have questions or ready to book an appointment? Reach out to us!</p>
+        <p>Email: info@radiantglow.com</p>
+        <p>Phone: +1 (123) 456-7890</p>
+        <form>
+            <!-- Contact form (can be integrated with a free service like Formspree.io later) -->
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
     <footer>
-        <p>&copy; <span id="current-year"></span> My Dynamic Website</p>
+        <p>&copy; <span id="current-year"></span> Radiant Glow. All rights reserved.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
